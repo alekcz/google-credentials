@@ -13,3 +13,6 @@ jobs:
       run: lein deps
     - name: Run tests
       run: lein test
+  report:
+    - lein cloverage --codecov
+    - bash <(curl -s https://codecov.io/bash)
