@@ -22,7 +22,7 @@ You still need to perform steps 2 - 4 to get up and running.
 `[alekcz/google-credentials "0.2.0"]`
 
 1. Get the `json` file containing your service account creditials by following the instruction here [https://cloud.google.com/docs/authentication/getting-started](https://cloud.google.com/docs/authentication/getting-started)  
-2. Copy the contets of your `.json` into the GOOGLE_APPLICATION_CREDENTIALS environment variable. In your `bash_profile` and in Travis CI you should escape your credentials using singe quotes.
+2. Copy the contents of your `.json` into the GOOGLE_APPLICATION_CREDENTIALS environment variable. In your `bash_profile` and in Travis CI you should escape your credentials using singe quotes.
 
 ```clojure
 (require '[google-credentials.core :as g-cred])
