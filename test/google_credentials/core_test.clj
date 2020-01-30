@@ -16,6 +16,3 @@
       (is (= (:client_id cred-file) (.getClientId cred)))
       (is (= (:client_email cred-file) (.getClientEmail cred)))
       (is (= (:private_key_id cred-file) (.getPrivateKeyId cred))))))
-
-;; This library is used in the alekcz/charmander pipeline. As long as that pipeline succeeds this library can tbe
-;; can be take to working as expected. 
