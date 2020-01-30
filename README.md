@@ -2,7 +2,7 @@
 
 A Clojure library for loading gcloud credentials from an environment variable instead of a .json file.
 
-![Build Status](https://github.com/alekcz/google-credentials/workflows/CI%2FCD/badge.svg) [![codecov](https://codecov.io/gh/alekcz/google-credentials/branch/master/graph/badge.svg)](https://codecov.io/gh/alekcz/google-credentials)
+![Build Status](https://github.com/alekcz/google-credentials/workflows/Clojure%20CI/badge.svg) [![codecov](https://codecov.io/gh/alekcz/google-credentials/branch/master/graph/badge.svg)](https://codecov.io/gh/alekcz/google-credentials)
 
 ## Usage
 
