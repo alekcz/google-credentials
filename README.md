@@ -1,14 +1,51 @@
 # google-credentials
 
-A Clojure library designed to ... well, that part is up to you.
+A Clojure library for loading gcloud credentials from an environment variable instead of a .json file.
 
 ## Usage
 
-FIXME
+`[alekcz/google-credentials "0.2.0"]`
+
+When interoping with the Google SDK the initialization process is more or less as follows:
+1. Load credentials from file
+2. Initialize credentials
+3. Initialize the SDK by pass the credentials to it.
+4. Access resource in the Google cloud
+
+This library allows the credentials to be loaded from the environment variable: GOOGLE_APPLICATION_CREDENTIALS.
+I've found this really useful when deploying applications or running CI/CD outside the Google cloud. 
+
+You still need to perform steps 2 - 4 to get up and running. 
+
+
+```clojure
+(require '[google-credentials.core :as g-cred])
+
+    ;; Cloud Storage
+    (-> (. StorageOptions newBuilder)
+        (.setCredentials (g-cred/load-credentials)) 
+        (.build) 
+        (.getService))
+
+    ;; Firebase
+    (def firebase-options   (-> (new FirebaseOptions$Builder) 
+                                (.setCredentials (g-cred/load-credentials)) 
+                                (.build))   
+    (.initializeApp FirebaseApp firebase-options)   
+
+     ;; generic example
+    (def cred   (-> (<options-builder>)
+                    (.setCredentials (g-cred/load-credentials)) 
+                    (.build))  
+    (<cloud-library>/<initialisation-function> cred)
+
+```
+
+This library is being used successfully in a few projects, with [alekcz/charmander](https://github.com/alekcz/charmander) being only one that I've currently open sourced. 
 
 ## License
 
-Copyright © 2020 FIXME
+Copyright © 2020 Alexander Oloo
 
 This program and the accompanying materials are made available under the
 terms of the Eclipse Public License 2.0 which is available at

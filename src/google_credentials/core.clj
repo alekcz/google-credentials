@@ -1,6 +1,5 @@
 (ns google-credentials.core
-  (:require [environ.core :refer [env]]
-            [cheshire.core :as json])
+  (:require [environ.core :refer [env]])
   (:import 	com.google.auth.oauth2.GoogleCredentials
             com.google.auth.oauth2.GoogleCredentials$Builder)
   (:gen-class))
@@ -16,6 +15,4 @@
   []
   (GoogleCredentials/fromStream (string->stream (env :google-application-credentials))))
 
-(defn get-project-id [] 
-  (let [cred (json/parse-string (env :google-application-credentials) true)]
-    (:project_id cred)))
+  
