@@ -47,8 +47,6 @@ You still need to perform steps 2 - 4 to get up and running.
 
 ```
 
-This library is being used successfully in a few projects, with [alekcz/charmander](https://github.com/alekcz/charmander) being only one that I've currently open sourced. 
-
 ## License
 
 Copyright © 2020 Alexander Oloo
