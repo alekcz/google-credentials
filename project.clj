@@ -1,0 +1,10 @@
+(defproject alekcz/google-credentials "0.1.4-SNAPSHOT"
+  :description "Load GOOGLE_APPLICATION_CREDENTIALS from a environment variable instead of a .json file"
+  :url "https://github.com/alekcz/google-credentials"
+  :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
+            :url "https://www.eclipse.org/legal/epl-2.0/"}
+  :dependencies [[org.clojure/clojure "1.10.0"]
+                 [environ "1.1.0"]
+                 [com.google.auth/google-auth-library-oauth2-http "0.20.0"]
+                 [cheshire "5.9.0"]]
+  :repl-options {:init-ns google-credentials.core})
