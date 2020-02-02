@@ -13,6 +13,5 @@
 
 (defn load-credentials ^GoogleCredentials 
   []
-  (GoogleCredentials/fromStream (string->stream (env :google-application-credentials))))
-
+  (GoogleCredentials/fromStream (string->stream (or (env :google-application-credentials) (env :firebase-config)))))
   
