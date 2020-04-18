@@ -4,9 +4,11 @@
   (:import 	com.google.auth.oauth2.GoogleCredentials)
   (:gen-class))
 
+(set! *warn-on-reflection* 1)
+
 (defn- string->stream
-  ([s] (string->stream s "UTF-8"))
-  ([s encoding]
+  ([^String s] (string->stream s "UTF-8"))
+  ([^String s ^String encoding]
    (-> s
        (.getBytes encoding)
        (java.io.ByteArrayInputStream.))))
