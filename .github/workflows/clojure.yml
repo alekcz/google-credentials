@@ -15,12 +15,10 @@ jobs:
       env: 
         GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
         FIREBASE_CONFIG: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
-      run: lein test
-    - name: Calculate coverage
-      env: 
-        GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
-        FIREBASE_CONFIG: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
-        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        FIRE2: ${{ secrets.FIRE2 }}
+        FIRE3: ${{ secrets.FIRE3 }}
+        FIRE4: ${{ secrets.FIRE4 }}
+        EMPTY: ${{ secrets.EMPTY }}
       run: |
         lein cloverage --codecov
         bash <(curl -s https://codecov.io/bash)
