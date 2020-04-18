@@ -11,10 +11,11 @@ A Clojure library for loading gcloud credentials from an environment variable in
 When interoping with the Google SDK the initialization process is more or less as follows:
 1. Load credentials from file
 2. Initialize credentials
-3. Initialize the SDK by pass the credentials to it.
+3. Initialize the SDK by passing the credentials to it.
 4. Access resource in the Google cloud
 
-This library allows the credentials to be loaded from the environment variable: `GOOGLE_APPLICATION_CREDENTIALS`.
+This library allows the credentials to be loaded from the environment variable: `GOOGLE_APPLICATION_CREDENTIALS`.  
+You can also load the credentials from a custom environment variable.
 I've found this really useful when deploying applications or running CI/CD outside the Google cloud. 
 
 You still need to perform steps 2 - 4 to get up and running. 
