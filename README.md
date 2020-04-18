@@ -32,25 +32,25 @@ You still need to perform steps 2 - 4 to get up and running.
 
     ;; By default load from GOOGLE_APPLICATION_CREDENTIALS
     (-> (. StorageOptions newBuilder)
-        (.setCredentials (g-cred/load-credentials)) 
+        (.setCredentials (g-cred/load-service-credentials)) 
         (.build) 
         (.getService))
 
     ;; Load from custom environment variable
     (def firebase-options   (-> (new FirebaseOptions$Builder) 
-                                (.setCredentials (g-cred/load-custom-credentials :firebase-config)) 
+                                (.setCredentials (g-cred/load-service-credentials :firebase-config)) 
                                 (.build))   
     (.initializeApp FirebaseApp firebase-options)   
 
     ;; Load from custom environment variable as string
     (def firebase-options   (-> (new FirebaseOptions$Builder) 
-                                (.setCredentials (g-cred/load-custom-credentials "FIREBASE_CONFIG")) 
+                                (.setCredentials (g-cred/load-service-credentials "FIREBASE_CONFIG")) 
                                 (.build))   
     (.initializeApp FirebaseApp firebase-options)   
 
      ;; generic example
     (def cred   (-> (<options-builder>)
-                    (.setCredentials (g-cred/load-credentials)) 
+                    (.setCredentials (g-cred/load-service-credentials)) 
                     (.build))  
     (<cloud-library>/<initialisation-function> cred)
 
