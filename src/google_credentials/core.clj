@@ -1,7 +1,6 @@
 (ns google-credentials.core
   (:require [environ.core :refer [env]])
-  (:import 	com.google.auth.oauth2.GoogleCredentials
-            com.google.auth.oauth2.GoogleCredentials$Builder)
+  (:import 	com.google.auth.oauth2.GoogleCredentials)
   (:gen-class))
 
 (defn- string->stream
@@ -13,5 +12,9 @@
 
 (defn load-credentials ^GoogleCredentials 
   []
-  (GoogleCredentials/fromStream (string->stream (or (env :google-application-credentials) (env :firebase-config)))))
+  (GoogleCredentials/fromStream (string->stream (env :google-application-credentials))))
+
+(defn load-firebase-credentials ^GoogleCredentials 
+  []
+  (GoogleCredentials/fromStream (string->stream (env :firebase-config))))
   

@@ -35,9 +35,10 @@ You still need to perform steps 2 - 4 to get up and running.
         (.build) 
         (.getService))
 
-    ;; Firebase
+    ;; Firebase 
     (def firebase-options   (-> (new FirebaseOptions$Builder) 
-                                (.setCredentials (g-cred/load-credentials)) 
+                                (.setCredentials (g-cred/load-firebase-credentials)) 
+                                ;for legacy support loads credentials for FIREBASE_CONFIG env variable
                                 (.build))   
     (.initializeApp FirebaseApp firebase-options)   
 

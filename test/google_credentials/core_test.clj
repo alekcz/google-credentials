@@ -5,8 +5,13 @@
             [environ.core :refer [env]]))
 
 (deftest test-loading-credential-from-env
-  (testing "Testing whether the credential can be successfully loaded from environment"
+  (testing "Testing whether the google credentials can be successfully loaded from environment"
     (let [credentials (g-cred/load-credentials)]
+      (is (= com.google.auth.oauth2.ServiceAccountCredentials (-> credentials type))))))
+
+(deftest test-loading-firebase-credential-from-env
+  (testing "Testing whether the firebase credentials can be successfully loaded from environment"
+    (let [credentials (g-cred/load-firebase-credentials)]
       (is (= com.google.auth.oauth2.ServiceAccountCredentials (-> credentials type))))))
 
 (deftest test-credential-values-to-file-contents
