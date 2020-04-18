@@ -21,7 +21,7 @@ You still need to perform steps 2 - 4 to get up and running.
 
 ## Usage
 
-`[alekcz/google-credentials "1.0.1"]`
+`[alekcz/google-credentials "2.0.0"]`
 
 1. Get the `json` file containing your service account creditials by following the instruction here [https://cloud.google.com/docs/authentication/getting-started](https://cloud.google.com/docs/authentication/getting-started)  
 2. Copy the contents of your `.json` into the GOOGLE_APPLICATION_CREDENTIALS environment variable. In your `bash_profile` and in Travis CI you should escape your credentials using singe quotes.
@@ -29,16 +29,21 @@ You still need to perform steps 2 - 4 to get up and running.
 ```clojure
 (require '[google-credentials.core :as g-cred])
 
-    ;; Cloud Storage
+    ;; By default load from GOOGLE_APPLICATION_CREDENTIALS
     (-> (. StorageOptions newBuilder)
         (.setCredentials (g-cred/load-credentials)) 
         (.build) 
         (.getService))
 
-    ;; Firebase 
+    ;; Load from custom environment variable
     (def firebase-options   (-> (new FirebaseOptions$Builder) 
-                                (.setCredentials (g-cred/load-firebase-credentials)) 
-                                ;for legacy support loads credentials for FIREBASE_CONFIG env variable
+                                (.setCredentials (g-cred/load-custom-credentials :firebase-config)) 
+                                (.build))   
+    (.initializeApp FirebaseApp firebase-options)   
+
+    ;; Load from custom environment variable as string
+    (def firebase-options   (-> (new FirebaseOptions$Builder) 
+                                (.setCredentials (g-cred/load-custom-credentials "FIREBASE_CONFIG")) 
                                 (.build))   
     (.initializeApp FirebaseApp firebase-options)   
 

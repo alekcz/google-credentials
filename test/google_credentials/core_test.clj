@@ -9,10 +9,15 @@
     (let [credentials (g-cred/load-credentials)]
       (is (= com.google.auth.oauth2.ServiceAccountCredentials (-> credentials type))))))
 
-(deftest test-loading-firebase-credential-from-env
+(deftest test-loading-custom-credential-from-env
   (testing "Testing whether the firebase credentials can be successfully loaded from environment"
-    (let [credentials (g-cred/load-firebase-credentials)]
+    (let [credentials (g-cred/load-custom-credentials "FIREBASE_CONFIG")]
       (is (= com.google.auth.oauth2.ServiceAccountCredentials (-> credentials type))))))
+
+(deftest test-loading-custom-credential-from-env-2
+  (testing "Testing whether the firebase credentials can be successfully loaded from environment"
+    (let [credentials (g-cred/load-custom-credentials :firebase-config)]
+      (is (= com.google.auth.oauth2.ServiceAccountCredentials (-> credentials type))))))      
 
 (deftest test-credential-values-to-file-contents
   (testing "Testing whether data in the .json file is correctly read into the credential."
