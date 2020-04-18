@@ -1,4 +1,4 @@
-(defproject alekcz/google-credentials "2.0.6"
+(defproject alekcz/google-credentials "3.0.0"
   :description "A Clojure library for loading gcloud credentials from an environment variable instead of a .json file."
   :url "https://github.com/alekcz/google-credentials"
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
