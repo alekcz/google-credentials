@@ -11,12 +11,12 @@
 
 (deftest test-loading-custom-credential-from-env
   (testing "Testing whether the firebase credentials can be successfully loaded from environment"
-    (let [credentials (g-cred/load-custom-credentials "FIREBASE_CONFIG")]
+    (let [credentials (g-cred/load-credentials "FIREBASE_CONFIG")]
       (is (= com.google.auth.oauth2.ServiceAccountCredentials (-> credentials type))))))
 
 (deftest test-loading-custom-credential-from-env-2
   (testing "Testing whether the firebase credentials can be successfully loaded from environment"
-    (let [credentials (g-cred/load-custom-credentials :firebase-config)]
+    (let [credentials (g-cred/load-credentials :firebase-config)]
       (is (= com.google.auth.oauth2.ServiceAccountCredentials (-> credentials type))))))      
 
 (deftest test-credential-values-to-file-contents
