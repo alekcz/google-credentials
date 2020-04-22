@@ -2,8 +2,9 @@
   (:require [environ.core :refer [env]]
             [clojure.string :as str]
             [cheshire.core :as json])
-  (:import 	[com.google.auth.oauth2 GoogleCredentials ServiceAccountCredentials]
-            [java.io IOException])
+  (:import 	[com.google.auth.oauth2 GoogleCredentials ServiceAccountCredentials ServiceAccountJwtAccessCredentials]
+            [java.io IOException]
+            [java.net URI])
   (:gen-class))
 
 (set! *warn-on-reflection* 1)
@@ -25,6 +26,14 @@
         (.setProjectId (-> creds :project_id str))
         (^ServiceAccountCredentials .build))))
 
+(defn- build-service-account-jwt-credentials [creds]
+  (ServiceAccountJwtAccessCredentials/fromPkcs8
+    ^String (-> creds :client_id str)
+    ^String (-> creds :client_email str)
+    ^String (-> creds :private_key str)
+    ^String (-> creds :private_key_id str)
+    ^URI (URI. "https://www.googleapis.com/oauth2/v4/token")))    
+
 (defn ^GoogleCredentials load-service-credentials 
   "Load google application credentials from environment variable defaults to  GOOGLE_APPLICATION_CREDENTIALS"
   ([]
@@ -39,5 +48,22 @@
           (throw (IOException. ^String (str "Error reading credentials from stream, 'type' field not specified.")))
         (= ^String service-account-type (:type creds))
           (build-service-account-credentials creds) 
+        :else (throw (IOException. ^String (str "Error reading credentials from stream, 'type' value '" (:type creds) "' not recognized."
+                                        "Expecting '" user-file-type "' or '" service-account-type "'.")))))))
+
+(defn ^GoogleCredentials load-jwt-credentials 
+  "Load google application credentials from environment variable defaults to  GOOGLE_APPLICATION_CREDENTIALS"
+  ([]
+   (load-jwt-credentials "GOOGLE_APPLICATION_CREDENTIALS"))  
+  ([^String env-var]
+    (let [clean-var (clean-env-var env-var)
+          creds (json/decode (env clean-var) true)]
+      (cond
+        (empty? creds)
+          (throw (IOException. ^String (str "Environment variable " env-var " is empty or does not exist")))
+        (empty? (:type creds))
+          (throw (IOException. ^String (str "Error reading credentials from stream, 'type' field not specified.")))
+        (= ^String service-account-type (:type creds))
+          (build-service-account-jwt-credentials creds) 
         :else (throw (IOException. ^String (str "Error reading credentials from stream, 'type' value '" (:type creds) "' not recognized."
                                         "Expecting '" user-file-type "' or '" service-account-type "'.")))))))
