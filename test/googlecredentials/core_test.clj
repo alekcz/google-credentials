@@ -1,6 +1,6 @@
 (ns googlecredentials.core-test
   (:require [clojure.test :refer :all]
-            [google-credentials.core :as g-cred]
+            [googlecredentials.core :as g-cred]
             [cheshire.core :as json]
             [environ.core :refer [env]]))
 
