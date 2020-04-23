@@ -23,7 +23,7 @@ You still need to perform steps 2 - 4 to get up and running.
 ## Usage
     
 **Current:** `[alekcz/googlecredentials "3.0.1"]`   
-__Deprecated: `[alekcz/google-credentials "3.0.0"]` The dash in the repository name creates problems.__
+_Deprecated: `[alekcz/google-credentials "3.0.0"]` The dash in the repository name creates problems._
 
 1. Get the `json` file containing your service account creditials by following the instruction here [https://cloud.google.com/docs/authentication/getting-started](https://cloud.google.com/docs/authentication/getting-started)  
 2. Copy the contents of your `.json` into the GOOGLE_APPLICATION_CREDENTIALS environment variable. In your `bash_profile` and in Travis CI you should escape your credentials using singe quotes.
