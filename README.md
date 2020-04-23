@@ -4,7 +4,7 @@ A Clojure library for loading gcloud credentials from an environment variable in
 
 ![Build Status](https://github.com/alekcz/google-credentials/workflows/Clojure%20CI/badge.svg) [![codecov](https://codecov.io/gh/alekcz/google-credentials/branch/master/graph/badge.svg)](https://codecov.io/gh/alekcz/google-credentials)  
 
-[![Clojars Project](https://img.shields.io/clojars/v/alekcz/google-credentials.svg)](https://clojars.org/alekcz/google-credentials)
+[![Clojars Project](https://img.shields.io/clojars/v/alekcz/googlecredentials.svg)](https://clojars.org/alekcz/googlecredentials)
 
 ## Background
 
@@ -22,13 +22,14 @@ You still need to perform steps 2 - 4 to get up and running.
 
 ## Usage
 
-`[alekcz/google-credentials "3.0.0"]`
+Deprecated: `[alekcz/google-credentials "3.0.0"]` The dash in the repository name creates problems.
+Current: `[alekcz/googlecredentials "3.0.1"]`   
 
 1. Get the `json` file containing your service account creditials by following the instruction here [https://cloud.google.com/docs/authentication/getting-started](https://cloud.google.com/docs/authentication/getting-started)  
 2. Copy the contents of your `.json` into the GOOGLE_APPLICATION_CREDENTIALS environment variable. In your `bash_profile` and in Travis CI you should escape your credentials using singe quotes.
 
 ```clojure
-(require '[google-credentials.core :as g-cred])
+(require '[googlecredentials.core :as g-cred])
 
     ;; By default load from GOOGLE_APPLICATION_CREDENTIALS
     (-> (. StorageOptions newBuilder)
