@@ -22,7 +22,7 @@ You still need to perform steps 2 - 4 to get up and running.
 
 ## Usage
 
-Deprecated: `[alekcz/google-credentials "3.0.0"]` The dash in the repository name creates problems.
+Deprecated: `[alekcz/google-credentials "3.0.0"]` The dash in the repository name creates problems.   
 Current: `[alekcz/googlecredentials "3.0.1"]`   
 
 1. Get the `json` file containing your service account creditials by following the instruction here [https://cloud.google.com/docs/authentication/getting-started](https://cloud.google.com/docs/authentication/getting-started)  
