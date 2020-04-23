@@ -1,4 +1,4 @@
-(ns google-credentials.core
+(ns googlecredentials.core
   (:require [environ.core :refer [env]]
             [clojure.string :as str]
             [cheshire.core :as json])

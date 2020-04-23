@@ -1,4 +1,4 @@
-(ns google-credentials.core-test
+(ns googlecredentials.core-test
   (:require [clojure.test :refer :all]
             [google-credentials.core :as g-cred]
             [cheshire.core :as json]
